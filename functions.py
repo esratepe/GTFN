@@ -344,8 +344,8 @@ def normalize(input):
 ################get data######################################################################################################################
 def load_dataset(Dataset):
     if Dataset == 'Indian':
-        mat_data = sio.loadmat('/home/tsing/data/datasets/Indian_pines_corrected.mat')
-        mat_gt = sio.loadmat('/home/tsing/data/datasets/Indian_pines_gt.mat')
+        mat_data = sio.loadmat('data/Indian_pines_corrected.mat')
+        mat_gt = sio.loadmat('data/Indian_pines_gt.mat')
         data_hsi = mat_data['indian_pines_corrected']
         gt_hsi = mat_gt['indian_pines_gt']
         TOTAL_SIZE = 10249
@@ -353,8 +353,8 @@ def load_dataset(Dataset):
         TRAIN_SIZE = math.ceil(TOTAL_SIZE * VALIDATION_SPLIT)
 
     if Dataset == 'PaviaU':
-        uPavia = sio.loadmat('/home/tsing/data/datasets/PaviaU.mat')
-        gt_uPavia = sio.loadmat('/home/tsing/data/datasets/PaviaU_gt.mat')
+        uPavia = sio.loadmat('data/PaviaU.mat')
+        gt_uPavia = sio.loadmat('data/PaviaU_gt.mat')
         data_hsi = uPavia['paviaU']
         gt_hsi = gt_uPavia['paviaU_gt']
         TOTAL_SIZE = 42776
@@ -363,8 +363,8 @@ def load_dataset(Dataset):
 
 
     if Dataset == 'Salinas':
-        SV = sio.loadmat('/home/tsing/data/datasets/Salinas_corrected.mat')
-        gt_SV = sio.loadmat('/home/tsing/data/datasets/Salinas_gt.mat')
+        SV = sio.loadmat('data/Salinas_corrected.mat')
+        gt_SV = sio.loadmat('data/Salinas_gt.mat')
         data_hsi = SV['salinas_corrected']
         gt_hsi = gt_SV['salinas_gt']
         TOTAL_SIZE = 54129
