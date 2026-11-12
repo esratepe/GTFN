@@ -29,9 +29,9 @@ Yeni giriş için en alttaki şablonu kopyala. Kimlikler sırayla gider: E001, E
 
 ---
 
-## E002 — Test sızıntısız seçim (orijinal protokol)
+## E002 — Test sızıntısız seçim (orijinal protokol)  reproducibility ve evaluation protocol analysis mpact of Test-Based Epoch Selection on GTFN Performance in Hyperspectral Image Classification
 
-- **Tarih:** _(doldur)_
+- **Tarih:** 11.11.2026
 - **Soru:** Epoch seçimi test yerine doğrulama kümesiyle yapılırsa GTFN'nin sonucu ne kadar değişir?
 - **Hipotez:** OA biraz düşer (tahminen 0,2–1 puan). Fark en çok, seed'ler arası oynaklığın yüksek olduğu Pavia'da görülür.
 - **Ne değişti:** Yalnızca seçim yöntemi. Test havuzundan sınıf başına `min(10, kalan // 2)` doğrulama pikseli ayrıldı ve testten çıkarıldı.
@@ -66,3 +66,19 @@ Yeni giriş için en alttaki şablonu kopyala. Kimlikler sırayla gider: E001, E
 - **Yorum:**
 - **Sonraki adım:**
 ```
+- **Tarih:** 2026-11-11
+- **Kod:** fork, commit `e8275af`
+- **Sonuçlar (test OA, ort. ± std, n=10):**
+
+  | Veri | Val seçili | Son epoch | Sızıntılı | Fark | E001 |
+  |---|---|---|---|---|---|
+  | Indian | 93,12 ± 1,13 | 92,93 | 93,47 | +0,34 | 93,40 |
+  | PaviaU | 93,03 ± 2,28 | 92,91 | 93,95 | +0,92 | 93,84 |
+  | Salinas | 96,28 ± 0,77 | 96,12 | 96,39 | +0,11 | 96,42 |
+
+- **Yorum:** Hipotez doğrulandı. Sızıntı OA'yı 0,1–0,9 puan şişiriyor ve en büyük etki
+  PaviaU'da. Sızıntı kötü seed'leri gizliyor (PaviaU seed 8: 88,34 → 92,03) ve std'yi
+  düşürüyor. Sızıntılı sütun E001 ile örtüşüyor, yani eğitim değişmemiş. Val seçimi ile son
+  epoch arasında anlamlı fark yok (val kümesi küçük). Makaleye göre dürüst fark:
+  −0,9 / −2,1 / −0,5 puan.
+- **Sonraki adım:** E003 eşit protokol bölmeleri (splits/) ile GTFN · E004 indeks hatası düzeltmesi
